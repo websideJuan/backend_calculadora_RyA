@@ -12,7 +12,7 @@ app.use(express.json())
 app.use('/api/v1', router)
 
 app.get('/', (req, res) => {
-  res.status(200).sendFile('index.html', { root: './public' })
+  res.status(200).send('Server is running')
 })
 
 const PORT = process.env.PORT || 3000
