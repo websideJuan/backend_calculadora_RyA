@@ -1,8 +1,8 @@
-import { requiere } from '../utilities/requiere.js'
+// import { requiere } from '../utilities/requiere.js'
 import { randomUUID } from 'node:crypto'
+import { jobs } from '../dataBase/jobs.js'
 
-const jobs = requiere('../dataBase/jobs.json')
-
+// const jobs = requiere('../dataBase/jobs.json')
 export class modelJobs {
   static getJobs () {
     if (jobs.length === 0) return false
