@@ -1,6 +1,7 @@
 // import { requiere } from '../utilities/requiere.js'
 import { randomUUID } from 'node:crypto'
 import { jobs } from '../dataBase/jobs.js'
+import { calcudorDeHoras } from '../utilities/calculadorDeHoras.js'
 
 // const jobs = requiere('../dataBase/jobs.json')
 export class modelJobs {
@@ -19,6 +20,7 @@ export class modelJobs {
 
   static postJob ({ body }) {
     const index = jobs.findIndex(job => job.order === body.order)
+    const { horas, minutos, extras } = calcudorDeHoras(body.start, body.end)
 
     if (index !== -1) {
       return false
@@ -26,6 +28,7 @@ export class modelJobs {
 
     const newJob = {
       id: randomUUID(),
+      horasTrabajadas: { horas, minutos, extras },
       ...body
     }
 
