@@ -32,8 +32,8 @@ export class modelTickets {
 
     diaUpdate.message = newTicket.message
     calendario.tickets.push(diaUpdate)
-    console.log(calendario)
-    return newTicket
+
+    return calendario
   }
 
   static putTicket ({ id, body }) {
