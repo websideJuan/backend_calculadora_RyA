@@ -12,4 +12,4 @@ router.put('/job/:id', (req, res) => JobsController.putJob(req, res))
 
 router.delete('/job/:id', (req, res) => JobsController.deleteJob(req, res))
 
-export { router }
+export default router

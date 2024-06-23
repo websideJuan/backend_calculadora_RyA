@@ -1,5 +1,6 @@
 import express from 'express'
-import { router } from './routes/route.jobs.js'
+import jobs from './routes/route.jobs.js'
+import tickets from './routes/route.tickets.js'
 import cors from 'cors'
 
 const app = express()
@@ -9,8 +10,11 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }))
+
 app.use(express.json())
-app.use('/api/v1', router)
+
+app.use('/api/v1', jobs)
+app.use('/api/v1', tickets)
 
 app.get('/', (req, res) => {
   res.status(200).send('Server is running')
