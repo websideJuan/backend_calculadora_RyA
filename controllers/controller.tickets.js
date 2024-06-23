@@ -13,6 +13,8 @@ export class TicketsController {
 
   static async getTicket (req, res) {
     const { id } = req.params
+    console.log(id)
+
     const response = modelTickets.getTicket({ id })
 
     if (response) {

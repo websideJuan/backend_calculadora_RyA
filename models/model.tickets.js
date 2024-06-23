@@ -3,12 +3,12 @@ import { calendario } from '../dataBase/tickets.js'
 
 export class modelTickets {
   static getTickets () {
-    if (calendario.tickets.length === 0) return false
-    return calendario.tickets
+    if (calendario.dias.length === 0) return false
+    return calendario
   }
 
   static getTicket ({ id }) {
-    const ticketFound = calendario.tickets.find(ticket => ticket.id === id)
+    const ticketFound = calendario.dias.find(ticket => ticket.dia === parseInt(id))
 
     if (ticketFound === undefined) return false
 
@@ -22,16 +22,16 @@ export class modelTickets {
       return false
     }
 
-    const newTicket = {
-      id: randomUUID(),
-      ...body
-    }
+    calendario.tickets.push({
+      ...body,
+      id: randomUUID()
+    })
 
-    const indexDia = calendario.dias.findIndex(dia => dia.dia === newTicket.dia)
+    const indexDia = calendario.dias.findIndex(dia => dia.dia === body.dia)
     const diaUpdate = calendario.dias[indexDia]
 
-    diaUpdate.message = newTicket.message
-    calendario.tickets.push(diaUpdate)
+    diaUpdate.message = body.message
+    diaUpdate.type = body.type
 
     return calendario
   }

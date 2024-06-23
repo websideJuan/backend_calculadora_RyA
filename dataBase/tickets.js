@@ -1,22 +1,28 @@
 let calendario = []
+const currentDate = new Date()
 
-function obtenerDiasDelMes (year, month) {
-  const ultimoDiaMes = new Date(year, month + 1, 0).getDate()
-  return Array.from({ length: ultimoDiaMes }, (_, index) => index + 1)
+const month = currentDate.getMonth()
+const year = currentDate.getFullYear()
+
+const daysArray = []
+const daysInMonth = new Date(year, month + 1, 0).getDate()
+const firstDayOfMonth = new Date(year, month, 1).getDay()
+
+for (let i = 0; i < firstDayOfMonth; i++) {
+  daysArray.push(null)
+}
+for (let i = 1; i <= daysInMonth; i++) {
+  daysArray.push(i)
 }
 
-const year = 2024
-const month = 2
-
-const diasDelMes = obtenerDiasDelMes(year, month)
-
 calendario = {
-  dias: diasDelMes.map(dia => ({
+  dias: daysArray.map(dia => ({
     dia,
     message: '',
-    type: '',
-    created_at: new Date()
+    type: ''
   })),
+  year,
+  month: month + 1,
   tickets: []
 }
 
